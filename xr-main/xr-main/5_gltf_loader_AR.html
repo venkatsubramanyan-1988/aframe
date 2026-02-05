@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>3D Model (glTF) - Fixed Lighting</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene
+      reflection="directionalLight: #sun"
+      ar-hit-test="target: #objects;"
+      renderer="colorManagement: true; exposure: 1; toneMapping: ACESFilmic"
+      shadow="type: pcfsoft"
+      xr-mode-ui="XRMode: xr"
+    >
+      <a-assets>
+        <a-asset-item id="dawg" src="bulldawg.glb"></a-asset-item>
+      </a-assets>
+
+      <a-light id="sun" type="directional" position="1 4 1" intensity="1.5" castShadow="true"></a-light>
+      <a-light type="ambient" intensity="0.5"></a-light>
+
+      <a-entity id="objects" position="0 0 -3">
+         <a-gltf-model 
+           src="#dawg" 
+           rotation="0 45 0" 
+           scale="2 2 2" 
+           shadow="cast: true; receive: true">
+         </a-gltf-model>
+      </a-entity>
+
+      <a-entity position="0 0 0">
+        <a-camera></a-camera>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
